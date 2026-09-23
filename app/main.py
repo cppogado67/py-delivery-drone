@@ -10,7 +10,6 @@ class BaseRobot:
     
     def go_forward(self, step=1):
         self.coords[1] += step
-
     
     def go_back(self, step=1):
         self.coords[1] -= step
