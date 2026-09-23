@@ -25,7 +25,7 @@ class BaseRobot:
 
 class FlyingRobot(BaseRobot):
     def __init__(self, name, weight, coords=None):
-        # Handle 3D coords - if 2 coords passed, add 0 for z
+        
         if coords and len(coords) == 2:
             coords = coords + [0]
         elif not coords:
@@ -43,14 +43,14 @@ class DeliveryDrone(FlyingRobot):
         super().__init__(name, weight, coords)
         self.max_load_weight = max_load_weight
         self.current_load = current_load
-        # If Cargo was passed, try to hook it
+        
         if current_load is not None:
             self.hook_load(current_load)
     
-    def hook_load(self, cargo):
+    def hook_load(self, cargo: Cargo) -> None:
         # Check both conditions before saving
         if self.current_load is None and cargo.weight <= self.max_load_weight:
             self.current_load = cargo
-    
-    def unhook_load(self):
+
+    def unhook_load(self) -> None:
         self.current_load = None
